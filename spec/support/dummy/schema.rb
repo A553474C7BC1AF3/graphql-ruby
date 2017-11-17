@@ -76,7 +76,7 @@ module Dummy
         if sources.include?("YAK")
           raise NoSuchDairyError.new("No cheeses are made from Yak milk!")
         else
-          CHEESES.values.find { |c| sources.include?(c.source) }
+          CHEESES.values.find { |cheese| sources.include?(cheese.source) }
         end
       }
     end
@@ -254,7 +254,7 @@ module Dummy
 
     def call(obj, args, ctx)
       id_string = args["id"].to_s # Cheese has Int type, Milk has ID type :(
-      _id, item = @data.find { |id, item| id.to_s == id_string }
+      _id, item = @data.find { |id, _item| id.to_s == id_string }
       item
     end
   end
